@@ -1,14 +1,14 @@
 package tech.pinheirolabs;
 
-import static tech.pinheirolabs.util.Impressao.*;
-import static tech.pinheirolabs.util.Util.*;
-import static tech.pinheirolabs.util.Valida.validarArgs;
-import static tech.pinheirolabs.Acao.*;
-import static tech.pinheirolabs.Decrypter.decriptar;
-import static tech.pinheirolabs.Encripter.encriptar;
-import static tech.pinheirolabs.GeraChave.gerarChave;
-
 import java.security.KeyException;
+import java.util.ArrayList;
+import java.util.List;
+
+import tech.pinheirolabs.cert.InstallCert;
+import tech.pinheirolabs.util.Impressao;
+import tech.pinheirolabs.util.Util;
+import tech.pinheirolabs.util.Valida;
+
 
 /**
  * Permite processar uma a��o espefica pre-definida.
@@ -19,32 +19,51 @@ import java.security.KeyException;
 public class JCripto {
 
 	public static void acao(String[] args){
-		if(!validarArgs(args)){
-			imprimirHelp(); return;
-		} else {
+		if (!Valida.validarArgs(args)) {
+			Impressao.imprimirHelp();
+		 } else {
 			try {
-				if(CHAVE.acao().equals(args[0])){
-					String[] chaves;
-					chaves = gerarChave(getQuantidade(args[1]));
-					imprimirChaves(chaves);
-					return;
-				}
-				byte[] key = formatar(args[1]);
-				if(CRYPTO.acao().equals(args[0])){
-					String cripto = encriptar(key, args[2]);
-					imprimirCriptografia(cripto, args[2]);
-					return;
-				}
-				if(DECRYPTO.acao().equals(args[0])){
-					String decripto = decriptar(key, args[2]);
-					imprimirCriptografia(args[2], decripto);
-					return;
-				}
-			} catch (KeyException e) {
-				System.out.println("Erro ao executar o <comando>" + "! \nMotivo:" + e.getMessage());
-				imprimirHelp();
+			   if (Acao.CHAVE.acao().equals(args[0])) {
+				  String[] chaves = GeraChave.gerarChave(Util.getQuantidade(args[1]));
+				  Impressao.imprimirChaves(chaves);
+				  return;
+			   }
+   
+			   if (Acao.CERTIFICADO_HTTPS.acao().equals(args[0])) {
+				  List<String> argsInstallCert = new ArrayList<>();
+   
+				  for(int i = 1; i < args.length; ++i) {
+					 if (args[i] != null) {
+						argsInstallCert.add(args[i]);
+					 }
+				  }
+   
+				  InstallCert.mainMethod((String[])argsInstallCert.toArray(new String[argsInstallCert.size()]));
+				  return;
+			   }
+   
+			   byte[] key = Util.formatar(args[1]);
+			   String decripto;
+			   if (Acao.CRYPTO.acao().equals(args[0])) {
+				  decripto = Encripter.encriptar(key, args[2]);
+				  Impressao.imprimirCriptografia(decripto, args[2]);
+				  return;
+			   }
+   
+			   if (Acao.DECRYPTO.acao().equals(args[0])) {
+				  decripto = Decrypter.decriptar(key, args[2]);
+				  Impressao.imprimirCriptografia(args[2], decripto);
+				  return;
+			   }
+			} catch (KeyException var3) {
+			   System.out.println("Erro ao executar o <comando>! \nMotivo:" + var3.getMessage());
+			   Impressao.imprimirHelp();
+			} catch (Exception var4) {
+			   System.out.println("Erro ao executar o <comando>! \nMotivo:" + var4.getMessage());
+			   Impressao.imprimirHelp();
 			}
-		}
+   
+		 }
 		
 	}
 	

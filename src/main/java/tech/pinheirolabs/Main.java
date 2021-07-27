@@ -1,6 +1,5 @@
 package tech.pinheirolabs;
 
-
 /**
  * Permite executar uma a��o no sistema.
  * 
@@ -9,13 +8,14 @@ package tech.pinheirolabs;
  */
 public class Main {
 
-    public static void main(String[] args1){
-        if(args1!=null && args1.length >=2){
-            JCripto.acao(args1);
-        }else{
+    public static void main(String[] args){
+        if (args != null && args.length >= 2) {
+            JCripto.acao(args);
+         } else {
             JCripto.acao(Acao.ler());
-        }
-        System.exit(0);
+         }
+   
+         System.exit(0);
     }
     
 }//END - By FP - 2021

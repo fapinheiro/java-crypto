@@ -9,7 +9,7 @@ public interface Const {
 	int 	CHAVE_TAMANHO 		= 128; // 128, 192, 256
 	String 	SEPARADOR			= ",";
 	String 	CHAVE_PADRAO		= "60,122,-128,-40,-54,64,-72,-53,117,-45,-62,18,55,-124,124,-86";
-	String 	CHAVE_AMBIENTE		= System.getProperties().getProperty("br.com.embracon.cripto");
+	String 	CHAVE_AMBIENTE		= System.getProperties().getProperty("tech.pinheirolabs.cripto");
 	
 	/** ********************************************************************************/
 	//TODO: Atualizar o Java para permitir encripta��o maior que 128 bits.

@@ -1,11 +1,8 @@
 package tech.pinheirolabs.util;
 
-import static tech.pinheirolabs.util.Const.*;
-
 public class Impressao {
 
-    /*******************************************************************************************/
-    public static void imprimirHelp(){
+    public static void imprimirHelp() {
         System.out.println("\n****************** GERADOR DE CHAVES e CRIPTOGRAFIA ***********************");
         System.out.println("* ");
         System.out.println("* Informar os seguintes comandos para execucao da aplicacao:");
@@ -24,55 +21,55 @@ public class Impressao {
         System.out.println("* ");
         System.out.println("* ");
         imprimirVersao();
-    }
-    
-    /*******************************************************************************************/
-    public static void imprimirChaves(String[] chaves){
+     }
+  
+     public static void imprimirChaves(String[] chaves) {
         imprimirSucesso();
         System.out.println("\n************************** CHAVES CRIPTOGRAFICAS ****************************");
         System.out.println("* ");
-        System.out.println("* Metodo de Encriptacao:" + METODO_ENCRIPTACAO);
-        System.out.println("* Tamanho da chave     :" + CHAVE_TAMANHO + " bits");
-        System.out.println("* Algoritmo Aleatorio  :" + ALGORITIMO);
+        System.out.println("* Metodo de Encriptacao:AES");
+        System.out.println("* Tamanho da chave     :128 bits");
+        System.out.println("* Algoritmo Aleatorio  :SHA1PRNG");
         System.out.println("* ");
         System.out.println("*****************************************************************************");
-        for (int i = 0; i < chaves.length; i++) {
-            System.out.println("\nCHAVE " +  (i+1) + ": " + chaves[i]);
+  
+        for(int i = 0; i < chaves.length; ++i) {
+           System.out.println("\nCHAVE " + (i + 1) + ": " + chaves[i]);
         }
+  
         imprimirVersao();
-    }
-    
-    /*******************************************************************************************/
-    public static void imprimirCriptografia(String cripto, String original){
+     }
+  
+     public static void imprimirCriptografia(String cripto, String original) {
         imprimirSucesso();
         System.out.println("\n************************** CONTEUDO CRIPTOGRAFADO **************************");
         System.out.println("* ");
-        System.out.println("* Metodo de Encriptacao:" + METODO_ENCRIPTACAO);
-        System.out.println("* Codificador Base     :" + "BASE64");
+        System.out.println("* Metodo de Encriptacao:AES");
+        System.out.println("* Codificador Base     :BASE64");
         System.out.println("* ");
         System.out.println("*****************************************************************************");
-        System.out.println("\nDADO ORIGINAL     : "+ original);
-        System.out.println("\nDADO CRIPTOGRAFADO: "+ cripto);
+        System.out.println("\nDADO ORIGINAL     : " + original);
+        System.out.println("\nDADO CRIPTOGRAFADO: " + cripto);
         imprimirVersao();
-    }
-    
-    /*******************************************************************************************/
-    public static void imprimirSucesso(){
+     }
+  
+     public static void imprimirSucesso() {
         System.out.println("\nComando executado com sucesso!!!");
-    }
-    
-    public static void imprimirVersao(){
+     }
+  
+     public static void imprimirVersao() {
         System.out.println("*************************** Version 1.0 **************************************");
-    }
-    
-    public static void imprimirMenu(){
+     }
+  
+     public static void imprimirMenu() {
         System.out.println("********* MENU DE ACAO **********");
-        System.out.println("* [ 0 ] - Ajuda                 *");
-        System.out.println("* [ 1 ] - Gerar CHAVE           *");
-        System.out.println("* [ 2 ] - Criptografar Senha    *");
-        System.out.println("* [ 3 ] - Decriptografar Senha  *");
+        System.out.println("* [ 0 ] - Ajuda                                     *");
+        System.out.println("* [ 1 ] - Gerar CHAVE                               *");
+        System.out.println("* [ 2 ] - Criptografar Senha                        *");
+        System.out.println("* [ 3 ] - Decriptografar Senha                      *");
+        System.out.println("* [ 4 ] - Inserir certificado HTTPS no KeyStore     *");
         System.out.println("*******************************************************************************");
         System.out.print("Entre ACAO desejada: ");
-    }
+     }
     
 }//END - By FP - 2021
